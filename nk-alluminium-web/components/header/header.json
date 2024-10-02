@@ -1,0 +1,31 @@
+{
+    "logo": "https://example.com/logo.png",
+    "button": {
+      "text": "Get started",
+      "url": "/"
+    },
+    "links": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Services",
+        "url": "/"
+      },
+      {
+        "name": "content",
+        "url": "/"
+      },
+      {
+        "name": "About",
+        "url": "/"
+      }
+      ,
+      {
+        "name": "Our Work",
+        "url": "/"
+      }
+    ]
+  }
+  
