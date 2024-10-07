@@ -33,7 +33,7 @@ const PageComponent: React.FC = (props: any) => {
             {Component ? (
               <Component {...variant.props} />
             ) : (
-              <Typography variant="h1">Variant not found</Typography>
+              <Typography >Variant not found</Typography>
             )}
           </Fragment>
         )
