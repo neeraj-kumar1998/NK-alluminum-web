@@ -5,7 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import { CommonCarouselStyles } from "../hoc/carousal-component-styles";
 import { ICONS } from "../constants";
 import dynamic from "next/dynamic";
-import { Box } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
+import { theme } from "../../lib/theme";
+import { useMobileCheck } from "../../utils/mobile-check/MobileCheck";
+import DesktopPxToVw, { MobilePxToVw } from "../../utils/DesktopFontCalc";
+import AnimatedText from "../hoc/AnimatedText";
 const CustomNextArrow = dynamic(() =>
   import("../hoc/custom-arrows").then((module) => module.CustomNextArrow)
 );
@@ -14,6 +18,7 @@ const CustomPrevArrow = dynamic(() =>
 );
 const HeroBanner = () => {
   const fullScreenImageWidth = true;
+  const isMobile = useMobileCheck();
   const settings = {
     dots: true,
     infinite: true,
@@ -50,7 +55,6 @@ const HeroBanner = () => {
       />
     ),
   };
-  console.log(ICONS?.TRANSPARENT_ARROW_RIGHT, "000000000");
   const bannerImage = [
     {
       image:
@@ -59,12 +63,14 @@ const HeroBanner = () => {
       description: "Discover amazing products and services",
     },
     {
-      image: "https://via.placeholder.com/1500x500/4682B4/fff?text=Slide+2",
+      image:
+        "https://i.ibb.co/B2t0VDK/elena-mozhvilo-yy-Bzyi-GEh6s-unsplash.jpg",
       title: "New Arrivals",
       description: "Check out the latest additions to our collection",
     },
     {
-      image: "https://via.placeholder.com/1500x500/32CD32/fff?text=Slide+3",
+      image:
+        "https://i.ibb.co/B2t0VDK/elena-mozhvilo-yy-Bzyi-GEh6s-unsplash.jpg",
       title: "Limited Time Offer",
       description: "Grab the best deals while they last!",
     },
@@ -83,7 +89,7 @@ const HeroBanner = () => {
       >
         {bannerImage && (
           <>
-            <Box width={"100%"}>
+            <Box position={"relative"} width={"100%"}>
               <CommonCarouselStyles>
                 <Slider {...settings}>
                   {bannerImage?.map((item: any, index: number) => (
@@ -121,6 +127,53 @@ const HeroBanner = () => {
                   ))}
                 </Slider>
               </CommonCarouselStyles>
+              <Stack
+                sx={{
+                  position: "absolute",
+                  top: "30%",
+                  paddingLeft: DesktopPxToVw(200),
+                  rowGap: DesktopPxToVw(20),
+                }}
+              >
+                <Stack
+                  maxWidth={isMobile ? MobilePxToVw(400) : DesktopPxToVw(600)}
+                  rowGap={DesktopPxToVw(20)}
+                >
+                  <AnimatedText
+                    color={`${theme?.palette?.neuPalette?.hexOne}`}
+                    fontSize={`${DesktopPxToVw(40)}`}
+                  >
+                    We Are Best Services Aluminum & Glass
+                  </AnimatedText>
+
+                  <AnimatedText
+                    color={`${theme?.palette?.neuPalette?.hexOne}`}
+                    fontSize={`${DesktopPxToVw(18)}`}
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Excepturi totam ex obcaecati delectus? Inventore, eligendi.
+                    Consectetur consequuntur, eaque at, voluptates optio nobis
+                    provident distinctio enim libero pariatur minus
+                    reprehenderit dolores?
+                  </AnimatedText>
+                </Stack>
+                <Button
+                  sx={{
+                    width: "fit-content",
+                    backgroundColor: theme?.palette?.neuPalette?.hexThirtyFour,
+                    borderRadius: "0vw",
+                    padding: `${DesktopPxToVw(10)} ${DesktopPxToVw(20)}`,
+                    color: theme?.palette?.neuPalette?.hexOne,
+                    "&:hover": {
+                      backgroundColor:
+                        theme?.palette?.neuPalette?.hexThirtyFour,
+                      color: theme?.palette?.neuPalette?.hexOne,
+                    },
+                  }}
+                >
+                  Learn More
+                </Button>
+              </Stack>
             </Box>
           </>
         )}
