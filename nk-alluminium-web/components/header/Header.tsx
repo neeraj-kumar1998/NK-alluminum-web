@@ -12,7 +12,7 @@ const Header = () => {
       }}
     >
       <Grid
-        border={"1px solid red"}
+       
         container
         justifyContent={"space-between"}
         alignItems={"center"}
