@@ -12,10 +12,11 @@ const AnimatedText = ({ children, color, fontSize, customStyles }: any) => {
         color: color ? color : "#333",
         margin: 0,
         fontWeight: 500,
+        
       }}
     >
       {children}
-      
+
     </motion.h1>
   );
 };
