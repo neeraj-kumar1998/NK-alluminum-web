@@ -1,19 +1,23 @@
-import React, { Fragment } from "react"
-import { Box, Typography } from "@mui/material"
-import { useMobileCheck } from "../utils/mobile-check/MobileCheck"
-import { useVariantContext } from "../context/variantContext"
-import HeroBanner from "./hero-banner/HeroBanner"
+import React, { Fragment } from "react";
+import { Box, Typography } from "@mui/material";
+import { useMobileCheck } from "../utils/mobile-check/MobileCheck";
+import { useVariantContext } from "../context/variantContext";
+import HeroBanner from "./hero-banner/HeroBanner";
+import CardWithHover from "./variants-component/CardWithHover";
+import GroupCarousalWithArrows from "./variants-component/GroupCarousalWithArrows";
 
 const variantComponents: { [key: string]: React.FC<any> } = {
   "hero-banner": HeroBanner,
-}
+  "card-with-hover": CardWithHover,
+  "carousal-with-arrows": GroupCarousalWithArrows,
+};
 
 const PageComponent: React.FC = (props: any) => {
-  const { variants } = useVariantContext()
-  const isMobile = useMobileCheck()
+  const { variants } = useVariantContext();
+  const isMobile = useMobileCheck();
   const pageBackgroundImage = isMobile
     ? props?.mobileBackgroundImage
-    : props?.backgroundImage
+    : props?.backgroundImage;
   return (
     <Box
       sx={{
@@ -25,21 +29,22 @@ const PageComponent: React.FC = (props: any) => {
         backgroundSize: props?.BackgroundColor?.hex ? "contain" : "cover",
         backgroundPosition: props?.BackgroundColor?.hex ? "top" : "center",
         position: "relative",
-      }}>
+      }}
+    >
       {variants.map((variant: any, index: number) => {
-        const Component = variantComponents[variant.variant]
+        const Component = variantComponents[variant.variant];
         return (
           <Fragment key={index}>
             {Component ? (
               <Component {...variant.props} />
             ) : (
-              <Typography variant="h1">Variant not found</Typography>
+              <Typography>Variant not found</Typography>
             )}
           </Fragment>
-        )
+        );
       })}
     </Box>
-  )
-}
+  );
+};
 
-export default PageComponent
+export default PageComponent;
