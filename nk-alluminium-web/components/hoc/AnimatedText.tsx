@@ -15,6 +15,7 @@ const AnimatedText = ({ children, color, fontSize, customStyles }: any) => {
       }}
     >
       {children}
+      
     </motion.h1>
   );
 };
